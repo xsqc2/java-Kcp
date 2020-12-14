@@ -1,19 +1,9 @@
-import io.netty.bootstrap.ServerBootstrap;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
-import io.netty.channel.Channel;
-import io.netty.channel.ChannelOption;
-import io.netty.channel.EventLoopGroup;
-import io.netty.channel.nio.NioEventLoopGroup;
-import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.util.CharsetUtil;
 import kcp.*;
 
-import java.nio.charset.Charset;
-import java.util.HashMap;
-import java.util.Map;
-
-public class ChatServer implements KcpListener {
+public class KcpChatServer implements KcpListener {
     KcpServer kcpServer;
     public static void main(String[] args) {
         ChannelConfig channelConfig = new ChannelConfig();
@@ -28,9 +18,9 @@ public class ChatServer implements KcpListener {
         channelConfig.setUseConvChannel(true);
 //        channelConfig.setCrc32Check(true);
         KcpServer kcpServer = new KcpServer();
-        ChatServer chatServer = new ChatServer();
-        chatServer.kcpServer = kcpServer;
-        kcpServer.init(chatServer,channelConfig,20003);
+        KcpChatServer kcpChatServer = new KcpChatServer();
+        kcpChatServer.kcpServer = kcpServer;
+        kcpServer.init(kcpChatServer,channelConfig,20003);
         System.out.println("============== 聊天室已开启（KCP） ==============");
     }
 
