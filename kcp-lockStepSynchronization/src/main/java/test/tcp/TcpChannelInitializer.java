@@ -22,8 +22,8 @@ public class TcpChannelInitializer extends ChannelInitializer<Channel> {
     @Override
     protected void initChannel(Channel channel) throws Exception {
         ChannelPipeline pipeline = channel.pipeline();
-        pipeline.addLast("frameDecoder",new LengthFieldBasedFrameDecoder(Integer.MAX_VALUE, 0, 4));
-        pipeline.addLast("frameEncoder",new LengthFieldPrepender(4,false));
+//        pipeline.addLast("frameDecoder",new LengthFieldBasedFrameDecoder(Integer.MAX_VALUE, 0, 4));
+//        pipeline.addLast("frameEncoder",new LengthFieldPrepender(4,false));
         pipeline.addLast("handler",simpleChannelInboundHandler);
     }
 }
