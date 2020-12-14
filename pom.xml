@@ -18,6 +18,7 @@
         <module>kcp-base</module>
         <module>kcp-example</module>
         <module>kcp-lockStepSynchronization</module>
+        <module>ChatDemo</module>
     </modules>
 
 
