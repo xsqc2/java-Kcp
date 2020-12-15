@@ -26,7 +26,7 @@ public class TcpChatServer extends SimpleChannelInboundHandler<ByteBuf> {
         TcpChatServer tcpChatServer = new TcpChatServer();
         TcpChannelInitializer tcpChannelInitializer = new TcpChannelInitializer(tcpChatServer);
         new NetAcceptor(tcpChannelInitializer,new InetSocketAddress(11009));
-        System.out.println("============== 聊天室已开启（KCP） ==============");
+        System.out.println("============== 聊天室已开启（TCP） ==============");
     }
 
     public static final AttributeKey<Player> playerAttributeKey = AttributeKey.newInstance("player");
@@ -85,7 +85,7 @@ public class TcpChatServer extends SimpleChannelInboundHandler<ByteBuf> {
 //                    player.getMessages().add(byteBuf1);
 //                }
 //        );
-        
+
         for(Player p : IdMapToPlayer.values()){
             String msg = byteBuf.toString(CharsetUtil.UTF_8).trim();
             if(p.getId() == player.getId()){
