@@ -36,10 +36,10 @@ public class KcpChatClient implements KcpListener {
                     new InputStreamReader(System.in));
             String input = reader.readLine();
             if (input != null) {
+                server.write(Unpooled.copiedBuffer(input, CharsetUtil.UTF_8));
                 if ("quit".equals(input)) {
                     System.exit(1);
                 }
-                server.write(Unpooled.copiedBuffer(input, CharsetUtil.UTF_8));
             }
         }
     }

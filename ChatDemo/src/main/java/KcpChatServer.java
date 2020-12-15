@@ -40,6 +40,9 @@ public class KcpChatServer implements KcpListener {
         if(byteBuf.toString(CharsetUtil.UTF_8).equals(" ")){
             return;
         }
+        if(byteBuf.toString(CharsetUtil.UTF_8).equals("quit")){
+            kcpServer.getChannelManager().del(ukcp);
+        }
         for(Ukcp kcp : kcpServer.getChannelManager().getAll()){
             String msg = byteBuf.toString(CharsetUtil.UTF_8);
             if(kcp.getConv() == ukcp.getConv()){
@@ -62,6 +65,7 @@ public class KcpChatServer implements KcpListener {
         System.out.println(msg);
     }
 
+    // TODO: Client断线时服务器需获知
     @Override
     public void handleClose(Ukcp ukcp) {
         String msg ="[" + ukcp.user().getRemoteAddress() +" (conv: "+ ukcp.getConv()+")] 离开聊天室。";
